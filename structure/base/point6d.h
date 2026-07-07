@@ -18,7 +18,10 @@ public:
     {
 
     }
-    Point6D(const Point3D<T>& point, T roll = static_cast<T>(0), T pitch = static_cast<T>(0), T yaw = static_cast<T>(0)) : Point3D<T>(point), roll_(roll), pitch_(pitch), yaw_(yaw)
+    Point6D(const Point3D<T>& point, T roll = static_cast<T>(0), T pitch = static_cast<T>(0), T yaw = static_cast<T>(0)) : Point6D(point.GetX(), point.GetY(), point.GetZ(), roll, pitch, yaw)
+    {
+
+    }
     {
 
     }

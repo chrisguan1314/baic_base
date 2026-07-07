@@ -16,7 +16,7 @@ public:
     {
 
     }
-    Point3D(const Point2D<T>& point, T z = static_cast<T>(0)) : Point2D<T>(point), z_(z)
+    Point3D(const Point2D<T>& point, T z = static_cast<T>(0)) : Point3D(point.GetX(), point.GetY(), z)
     {
 
     }
