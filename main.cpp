@@ -4,8 +4,8 @@
 
 int main()
 {
-    structure::Point2D<double> p1(1.0, 2.0);
-    structure::Point2D<double> p2(4.0, 6.0);
+    structure::Point3D<double> p1(1.0, 2.0, 3.0);
+    structure::Point3D<double> p2(4.0, 6.0, 8.0);
 
     auto chebyshev_distance = algorithm::DistOfChebyshev(p1, p2);
     auto manhattan_distance = algorithm::DistOfManhattan(p1, p2);
