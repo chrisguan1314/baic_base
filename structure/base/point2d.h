@@ -5,9 +5,11 @@
 
 namespace structure
 {
-template <typename T, typename = typename std::enable_if_t<std::is_arithmetic_v<T>>>
+template <typename T, typename = typename std::enable_if_t<std::is_floating_point_v<T>>>
 class Point2D
 {
+public:
+    using value_type = T;
 private:
     T x_{static_cast<T>(0)};
     T y_{static_cast<T>(0)};

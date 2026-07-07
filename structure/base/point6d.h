@@ -4,9 +4,11 @@
 
 namespace structure
 {
-template <typename T, typename = typename std::enable_if_t<std::is_arithmetic_v<T>>>
+template <typename T, typename = typename std::enable_if_t<std::is_floating_point_v<T>>>
 class Point6D : public Point3D<T>
 {
+public:
+    using value_type = T;
 private:
     T roll_{static_cast<T>(0)};
     T pitch_{static_cast<T>(0)};
