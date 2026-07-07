@@ -12,3 +12,5 @@ public:
     Timestamp& operator=(Timestamp&&) = default;
     ~Timestamp() = default;
 };
+
+};
