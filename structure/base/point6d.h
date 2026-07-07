@@ -66,21 +66,5 @@ public:
     {
         yaw_ = yaw;
     }
-public:
-    template <typename U, typename = typename std::enable_if_t<std::is_same_v<std::decay_t<U>, Point6D>>>
-    T DistOfChebyshev(U && point) const noexcept
-    {
-        return Point3D<T>::DistOfChebyshev(point);
-    }
-    template <typename U, typename = typename std::enable_if_t<std::is_same_v<std::decay_t<U>, Point6D>>>
-    T DistOfManhattan(U && point) const noexcept
-    {
-        return Point3D<T>::DistOfManhattan(point);
-    }
-    template <typename U, typename = typename std::enable_if_t<std::is_same_v<std::decay_t<U>, Point6D>>>
-    T DistOfEuclidean(U && point) const noexcept
-    {
-        return Point3D<T>::DistOfEuclidean(point);
-    }
 };
 };
