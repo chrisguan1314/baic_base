@@ -21,6 +21,7 @@ class Obstacle
 public:
     using Position = structure::Postion3D<T>;
     using Timestamp = structure::Timestamp;
+    using UUID = structure::UUID;
 private:
     Timestamp timestamp_;
     UUID id_{0};

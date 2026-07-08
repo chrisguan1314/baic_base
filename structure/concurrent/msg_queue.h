@@ -4,6 +4,8 @@
 #include <mutex>
 #include <memory>
 #include <condition_variable>
+namespace structure
+{
 namespace concurrent
 {
 
@@ -42,4 +44,5 @@ public:
     }
 };
 
+};
 };

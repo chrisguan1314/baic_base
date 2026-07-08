@@ -10,6 +10,10 @@
 #include <future>
 #include <atomic>
 
+namespace structure
+{
+namespace pool
+{
 class ThreadPool 
 {
 public:
@@ -95,4 +99,7 @@ private:
     std::mutex mtx_;
     std::condition_variable cond_;
     std::atomic<bool> stop_;                          // 线程池停止标记
+};  
 };
+};
+
