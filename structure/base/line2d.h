@@ -84,7 +84,7 @@ public:
     T GetSlope() const
     {
         T deltaX = end_.GetX() - start_.GetX();
-        if (std::abs(deltaX) < std::numeric_limits<T>::epsilon())
+        if (std::abs(deltaX) < std::numeric_limits<T>::epsilon() * std::max(std::abs(start_.GetX()), std::abs(end_.GetX())))
         {
             throw std::runtime_error("Slope is undefined for vertical lines.");
         }
