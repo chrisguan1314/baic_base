@@ -77,6 +77,26 @@ public:
     {
         end_.SetEnd(Point2D<T>(end_x, end_y));
     }
+    T GetLength() const noexcept
+    {
+        return start_.DistOfEuclidean(end_);
+    }
+    T GetSlope() const
+    {
+        T deltaX = end_.GetX() - start_.GetX();
+        if (std::abs(deltaX) < std::numeric_limits<T>::epsilon())
+        {
+            throw std::runtime_error("Slope is undefined for vertical lines.");
+        }
+        return (end_.GetY() - start_.GetY()) / deltaX;
+    }
+    T DistFromPoint(const Point2D<T>& point) const noexcept
+    {
+        T A = end_.GetY() - start_.GetY();
+        T B = start_.GetX() - end_.GetX();
+        T C = end_.GetX() * start_.GetY() - start_.GetX() * end_.GetY();
+        return std::abs(A * point.GetX() + B * point.GetY() + C) / std::sqrt(A * A + B * B);
+    }
 };
 
 };

@@ -62,7 +62,7 @@ public:
     template <typename U, typename = typename std::enable_if_t<std::is_base_of_v<Point2D, std::decay_t<U>>>>
     T DistOfEuclidean(U && point) const noexcept
     {
-        return std::sqrt(std::pow((x_ - std::forward<U>(point).GetX()), 2) + std::pow(y_ - std::forward<U>(point).GetY()));
+        return std::sqrt(std::pow((x_ - std::forward<U>(point).GetX()), 2) + std::pow(y_ - std::forward<U>(point).GetY(), 2));
     }
     void Translate(T dx = static_cast<T>(0), T dy = static_cast<T>(0)) noexcept
     {
