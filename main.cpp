@@ -17,11 +17,22 @@ int main()
     std::cout << "Manhattan Distance: " << manhattan_distance << std::endl;
     std::cout << "Euclidean Distance: " << euclidean_distance << std::endl;
 
-    structure::Line2D<double> line(0.0, 0.0, 3.0, 4.0);
-    std::cout << "Line Start: (" << line[0].GetX() << ", " << line[0].GetY() << ")" << std::endl;
-    std::cout << "Line End: (" << line[1].GetX() << ", " << line[1].GetY() << ")" << std::endl;
-    std::cout << "Line Length: " << line.GetLength() << std::endl;
-    std::cout << "Line Slope: " << line.GetSlope() << std::endl;
+    structure::Line2D<double> line1(0.0, 0.0, 3.0, 4.0);
+    std::cout << "Line Start: (" << line1[0].GetX() << ", " << line1[0].GetY() << ")" << std::endl;
+    std::cout << "Line End: (" << line1[1].GetX() << ", " << line1[1].GetY() << ")" << std::endl;
+    std::cout << "Line Length: " << line1.GetLength() << std::endl;
+    std::cout << "Line Slope: " << line1.GetSlope() << std::endl;
+    structure::Line2D<double> line2(0.0, 4.0, 3.0, 0.0);
+    std::cout << "Line2 Start: (" << line2[0].GetX() << ", " << line2[0].GetY() << ")" << std::endl;
+    std::cout << "Line2 End: (" << line2[1].GetX() << ", " << line2[1].GetY() << ")" << std::endl;
+    std::cout << "Line2 Length: " << line2.GetLength() << std::endl;
+    std::cout << "Line2 Slope: " << line2.GetSlope() << std::endl;
+
+    std::cout << "Is cross : " << line1.IsCross(line2) << std::endl;
+
+    structure::Line2D<double> line3 = line1;
+    line3.Translate(1.0, 1.0);
+    std::cout << "Is cross : " << line1.IsCross(line3) << std::endl;
 
     return 0;
 }

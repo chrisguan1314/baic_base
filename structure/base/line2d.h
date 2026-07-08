@@ -97,6 +97,25 @@ public:
         T C = end_.GetX() * start_.GetY() - start_.GetX() * end_.GetY();
         return std::abs(A * point.GetX() + B * point.GetY() + C) / std::sqrt(A * A + B * B);
     }
+    bool IsPointOnLine(const Point2D<T>& point, T tolerance = std::numeric_limits<T>::epsilon()) const noexcept
+    {
+        T dist = DistFromPoint(point);
+        return dist <= tolerance;
+    }
+    template <typename U, typename = typename std::enable_if_t<std::is_same_v<Line2D<T>, std::decay_t<U>>>>
+    bool IsCross(U && other) const noexcept
+    {
+        T d1 = (end_.GetX() - start_.GetX()) * (std::forward<U>(other).start_.GetY() - start_.GetY()) - (end_.GetY() - start_.GetY()) * (std::forward<U>(other).start_.GetX() - start_.GetX());
+        T d2 = (end_.GetX() - start_.GetX()) * (std::forward<U>(other).end_.GetY() - start_.GetY()) - (end_.GetY() - start_.GetY()) * (std::forward<U>(other).end_.GetX() - start_.GetX());
+        T d3 = (std::forward<U>(other).end_.GetX() - std::forward<U>(other).start_.GetX()) * (start_.GetY() - std::forward<U>(other).start_.GetY()) - (std::forward<U>(other).end_.GetY() - std::forward<U>(other).start_.GetY()) * (start_.GetX() - std::forward<U>(other).start_.GetX());
+        T d4 = (std::forward<U>(other).end_.GetX() - std::forward<U>(other).start_.GetX()) * (end_.GetY() - std::forward<U>(other).start_.GetY()) - (std::forward<U>(other).end_.GetY() - std::forward<U>(other).start_.GetY()) * (end_.GetX() - std::forward<U>(other).start_.GetX());
+        return ((d1 > 0 && d2 < 0) || (d1 < 0 && d2 > 0)) && ((d3 > 0 && d4 < 0) || (d3 < 0 && d4 > 0));
+    }
+    void Translate(T dx = static_cast<T>(0.0), T dy = static_cast<T>(0.0)) noexcept
+    {
+        start_.Translate(dx, dy);
+        end_.Translate(dx, dy);
+    }
 };
 
 };
