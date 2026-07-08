@@ -95,11 +95,13 @@ public:
     bool IsPointOnLine(const Point3D<T>& point, T tolerance = std::numeric_limits<T>::epsilon()) const noexcept
     {
         // Implementation for checking if a point is on the line
+        return false;
     }
     template <typename U, typename = typename std::enable_if_t<std::is_same_v<Line3D<T>, std::decay_t<U>>>>
     bool IsCross(U && other) const noexcept
     {
         // Implementation for checking if two lines cross
+        return false;
     }
     void Translate(T dx = static_cast<T>(0.0), T dy = static_cast<T>(0.0), T dz = static_cast<T>(0.0)) noexcept
     {
