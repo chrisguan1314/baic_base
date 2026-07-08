@@ -35,6 +35,7 @@ int main()
     std::cout << "Is cross : " << line1.IsCross(line3) << std::endl;
 
     std::cout << algorithm::DistFromPointToLine(p1, line1) << std::endl;
+    std::cout << algorithm::DistFromLineToPoint(line1, p1) << std::endl;
 
     return 0;
 }
