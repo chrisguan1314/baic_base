@@ -6,8 +6,8 @@
 
 int main()
 {
-    structure::Point3D<double> p1(1.0, 2.0, 3.0);
-    structure::Point3D<double> p2(4.0, 6.0, 8.0);
+    structure::Point2D<double> p1(1.0, 2.0);
+    structure::Point2D<double> p2(4.0, 6.0);
 
     auto chebyshev_distance = algorithm::DistOfChebyshev(p1, p2);
     auto manhattan_distance = algorithm::DistOfManhattan(p1, p2);
@@ -33,6 +33,8 @@ int main()
     structure::Line2D<double> line3 = line1;
     line3.Translate(1.0, 1.0);
     std::cout << "Is cross : " << line1.IsCross(line3) << std::endl;
+
+    std::cout << algorithm::DistFromPointToLine(p1, line1) << std::endl;
 
     return 0;
 }

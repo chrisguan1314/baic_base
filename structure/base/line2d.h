@@ -9,6 +9,8 @@ namespace structure
 template <typename T, typename = typename std::enable_if_t<std::is_floating_point_v<T>>>
 class Line2D
 {
+public:
+    using value_type = T;
 private:
     Point2D<T> start_{static_cast<T>(0.0), static_cast<T>(0.0)};
     Point2D<T> end_{static_cast<T>(0.0), static_cast<T>(0.0)};

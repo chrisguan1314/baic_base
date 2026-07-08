@@ -1,7 +1,10 @@
 #pragma once
 
 #include "..\..\structure\base\point6d.h"
+#include "..\..\structure\base\line2d.h"
+#include "..\..\structure\base\line3d.h"
 #include <cmath>
+#include <type_traits>
 
 namespace algorithm 
 {
@@ -85,4 +88,26 @@ decltype(auto) DistOfEuclidean(T && p1, T && p2)
     }
 };
 
+template <typename T1, typename T2>
+decltype(auto) DistFromPointToLine(T1 && point, T2 && line) 
+{
+    if (std::is_same_v<std::decay_t<T1>, structure::Point2D<typename std::decay_t<T1>::value_type>> && std::is_same_v<std::decay_t<T2>, structure::Line2D<typename std::decay_t<T2>::value_type>>) 
+    {
+        return std::forward<T2>(line).DistFromPoint(std::forward<T1>(point));
+    } 
+    else if (std::is_same_v<std::decay_t<T1>, structure::Point3D<typename std::decay_t<T1>::value_type>> && std::is_same_v<std::decay_t<T2>, structure::Line3D<typename std::decay_t<T2>::value_type>>) 
+    {
+        return std::forward<T2>(line).DistFromPoint(std::forward<T1>(point));
+    } 
+    else 
+    {
+        static_assert(
+            (std::is_same_v<std::decay_t<T1>, structure::Point2D<typename std::decay_t<T1>::value_type>> && std::is_same_v<std::decay_t<T2>, structure::Line2D<typename std::decay_t<T2>::value_type>>) ||
+            (std::is_same_v<std::decay_t<T1>, structure::Point3D<typename std::decay_t<T1>::value_type>> && std::is_same_v<std::decay_t<T2>, structure::Line3D<typename std::decay_t<T2>::value_type>>),
+            "Unsupported point or line type"
+        );
+    }
 };
+
+};
+
