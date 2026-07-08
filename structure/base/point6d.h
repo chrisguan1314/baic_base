@@ -22,9 +22,6 @@ public:
     {
 
     }
-    {
-
-    }
     Point6D(const Point6D&) = default;
     Point6D& operator=(const Point6D&) = default;
     Point6D(Point6D&&) = default;
