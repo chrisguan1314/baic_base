@@ -1,6 +1,7 @@
 #include "algorithm\base\math.h"
 #include "structure\base\line2d.h"
-
+#include "algorithm\planning\dijkstra.h"
+#include "algorithm\planning\a_start.h"
 
 #include <iostream>
 
@@ -35,6 +36,40 @@ int main()
     std::cout << "Is cross : " << line1.IsCross(line3) << std::endl;
 
     std::cout << algorithm::DistFromPointToLine(p1, line1) << std::endl;
+
+    std::vector<std::vector<uint32_t>> graph = {
+        {0, 1, 2, std::numeric_limits<uint32_t>::max(), std::numeric_limits<uint32_t>::max()},
+        {1, 0, std::numeric_limits<uint32_t>::max(), 8, std::numeric_limits<uint32_t>::max()},
+        {2, std::numeric_limits<uint32_t>::max(), 0, 3, std::numeric_limits<uint32_t>::max()},
+        {std::numeric_limits<uint32_t>::max(), 8, 3, 0, 10},
+        {std::numeric_limits<uint32_t>::max(), std::numeric_limits<uint32_t>::max(), std::numeric_limits<uint32_t>::max(), 10, 0}
+    };
+
+    // Dijkstra dijkstra;
+    // dijkstra.run(graph, 0);
+
+    // auto path = dijkstra.getShortestPath(4);
+    // std::cout << "Shortest path from node 0 to node 4: ";
+    // for (const auto& node : path)
+    // {
+    //     std::cout << node << " ";
+    // }
+
+    const uint32_t INFINITY_MAX = std::numeric_limits<uint32_t>::max();
+    AStar astar({
+        {1, 1, 1, 1, 1},
+        {2, INFINITY_MAX, INFINITY_MAX, INFINITY_MAX, 1},
+        {1, 1, 1, INFINITY_MAX, 1},
+        {INFINITY_MAX, INFINITY_MAX, 1, 1, 1},
+        {1, 1, 1, INFINITY_MAX, 1}}
+    );
+    
+    auto astar_path = astar.GetPath({0, 0}, {4, 0});
+    std::cout << "A* Path: ";
+    std::for_each(astar_path.begin(), astar_path.end(), [](const AStar::MapPoint& point) {
+        std::cout << "(" << point.first << ", " << point.second << ") ";
+    });
+    std::cout << std::endl;
 
     return 0;
 }
